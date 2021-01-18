@@ -8,19 +8,19 @@ using Rage.Native;
 
 namespace CayoPericoRPH
 {
-    internal static class TrafficPaths
+    internal static class Minimap
     {
-        public static void DisableTrafficPaths()
+        public static void DisableIslandRadar()
         {
-            NativeFunction.Natives.xF74B1FFA4A15FBEA(1);
+            NativeFunction.CallByHash(0x5E1460624D194A38, typeof(int), false);
         }
 
-        public static void EnableTrafficPaths()
+        public static void EnableIslandRadar()
         {
-            NativeFunction.Natives.xF74B1FFA4A15FBEA(0);
+            NativeFunction.CallByHash(0x5E1460624D194A38, typeof(int), true);
         }
 
-        public static void EnableTrafficPathsInLoop()
+        public static void EnableIslandRadarInLoop()
         {
             GameFiber.StartNew(delegate
             {
@@ -31,8 +31,8 @@ namespace CayoPericoRPH
                     {
                         try
                         {
-                            if (Settings.MainPlayer.DistanceTo2D(Settings.MapCenter) <= 2000f) DisableTrafficPaths();
-                            else EnableTrafficPaths();
+                            if (Settings.MainPlayer.DistanceTo2D(Settings.MapCenter) <= 2000f) EnableIslandRadar();
+                            else DisableIslandRadar();
                         }
                         catch (Exception ex)
                         {

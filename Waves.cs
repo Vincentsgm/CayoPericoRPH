@@ -16,13 +16,13 @@ namespace CayoPericoRPH
 
         public static void DisableWaves()
         {
-            Game.DisplayNotification("Disabling waves");
+            //Game.DisplayNotification("Disabling waves");
             NativeFunction.Natives.x7E3F55ED251B76D3(1);
         }
 
         public static void EnableWaves()
         {
-            Game.DisplayNotification("Enabling waves");
+            //Game.DisplayNotification("Enabling waves");
             NativeFunction.Natives.x7E3F55ED251B76D3(0);
         }
 
@@ -39,7 +39,7 @@ namespace CayoPericoRPH
                         {
                             if (PlayerOnIsland != PlayerOnIslandPrevious)
                             {
-                                Game.DisplayNotification("Detected player left or joined island");
+                                //Game.DisplayNotification("Detected player left or joined island");
                                 if (PlayerOnIsland) DisableWaves();
                                 else EnableWaves();
                             }

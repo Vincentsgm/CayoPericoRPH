@@ -25,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -53,6 +53,7 @@
     <Compile Include="DoorUnlocking\MainGate.cs" />
     <Compile Include="EntryPoint.cs" />
     <Compile Include="Menus\MainMenu.cs" />
+    <Compile Include="Minimap.cs" />
     <Compile Include="Natives.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
@@ -61,4 +62,8 @@
     <Compile Include="Waves.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /Y "$(TargetDir)$(ProjectName).dll" "D:\Rockstar Games\Grand Theft Auto V\plugins\$(ProjectName).dll"
+copy /Y "$(TargetDir)$(ProjectName).pdb" "D:\Rockstar Games\Grand Theft Auto V\plugins\$(ProjectName).pdb"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
