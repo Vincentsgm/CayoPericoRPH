@@ -56,8 +56,8 @@ Made by Vincentsgm");
 			IPLsToLoad.ForEach(i => LoadIPL(i));
 		}
 
-        public static void Exit(bool isTerminating)
-        {
+        	public static void Exit(bool isTerminating)
+        	{
 			Game.LogTrivial("Exitting CayoPericoRPH");
 			IPLsToLoad.ForEach(i => UnloadIPL(i));
 			NativeFunction.CallByHash(0x5E1460624D194A38, typeof(int), false);
@@ -66,15 +66,15 @@ Made by Vincentsgm");
 		private static void LoadMPMap() => NativeFunction.Natives.x0888C3502DBBEEF5();
 
 		private static void LoadIPL(string iplName)
-        {
+        	{
 			try
 			{
 				NativeFunction.Natives.x41B4893843BBDB74(iplName);
 			}
 			catch (AccessViolationException)
-            {
+            		{
 				Game.LogTrivial($"Error while loading the following IPL: {iplName}");
-            }
+            		}
 		}
 
 		private static void UnloadIPL(string iplName)
@@ -98,41 +98,41 @@ Made by Vincentsgm");
 		private static void RefreshInterior(int interiorID) => NativeFunction.Natives.x41F37C3427C75AE0(interiorID);*/
 
 		private static void WaitForMPMap()
-        {
+        	{
 			while (!IsIPLActive("h4_islandairstrip"))
-            {
+        		{
 				GameFiber.Sleep(1000);
 				LoadIPL("h4_islandairstrip");
-            }
-        }
+            		}
+        	}
 
 		private static void LoadScenarioGroups(bool enable)
-        {
+        	{
 			NativeFunction.Natives.SET_SCENARIO_GROUP_ENABLED("Heist_Island_Peds", enable);
 			NativeFunction.Natives.SET_SCENARIO_GROUP_ENABLED("Heist_Island_Peds_2", enable);
 		}
 
 		private static void EnableZone()
-        {
+        	{
 			int zone = NativeFunction.Natives.GET_ZONE_FROM_NAME_ID<int>("IsHeist");
 			NativeFunction.Natives.SET_ZONE_ENABLED(zone, 1);
 		}
 
 		private static void EnableMinimap()
-        {
+        	{
 			if (IsPlayerOutsideInterior)
-            {
+        		{
 				NativeFunction.Natives.SET_RADAR_AS_INTERIOR_THIS_FRAME(Game.GetHashKey("h4_fake_islandx")/*0xc0a90510*/, 4700.0f, -5145.0f, 0, 0);
 				NativeFunction.Natives.SET_RADAR_AS_EXTERIOR_THIS_FRAME();
 			}
-        }
+        	}	
 
 		private static bool IsPlayerOutsideInterior => PlayerInterior == 0;
 
 		private static int PlayerInterior => NativeFunction.Natives.GET_INTERIOR_FROM_ENTITY<int>(Settings.MainPlayer);
 
 		private static void LoadSounds()
-        {
+        	{
 			NativeFunction.Natives.SET_AMBIENT_ZONE_LIST_STATE("azl_dlc_hei4_island_zones", 1, 0);
 			NativeFunction.Natives.SET_STATIC_EMITTER_ENABLED("se_dlc_hei4_island_beach_party_music_new_01_left", true);
 			NativeFunction.Natives.SET_STATIC_EMITTER_ENABLED("se_dlc_hei4_island_beach_party_music_new_02_right", true);
